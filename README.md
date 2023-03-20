@@ -14,6 +14,8 @@ Meat Ledger is an Integrated Provenance, BLOCKCHAIN Security and Payments Platfo
 ## Steps
 * To get the install script:
 ```
+mkdir Hyperledger
+cd Hyperledger
 curl -sSLO https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh && chmod +x install-fabric.sh
 ```
 
@@ -22,31 +24,31 @@ curl -sSLO https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/ins
 ./install-fabric.sh --fabric-version 2.2.1 binary
 ```
 
-* Create fabric scripts folder and move config to composer folder
+* Configure bin path in bashrc file
 ```
-mkdir fabric-scripts
-cd fabric-scripts
-
-mkdir composer
-cd composer
-
-mv ../../config ./
+nano ~/.bashrc
+export PATH=$PATH:/home/user/Hyperledger/bin
 ```
 
-* Download crypto-config.yaml, configtx.yaml, create-channel.sh and edit that file as requirements
-
-* Run create-channel.sh and it will result crypto-config folder with organizations folders.
+* Clone github Repository
 ```
-chmod +x create-channel.sh
-./create-channel.sh
+git clone https://github.com/galisaishankar08/MeatLedger.git
 ```
 
-* Change dir to fabric-scripts floder
+* Edit crypto-config.yaml, configtx.yaml, create-channel.sh file as your requirements
+
+* create a channel-artifacts folder
 ```
-cd ..
+mkdir channel-artifacts
 ```
 
-* Download base.yaml, docker-compose.yaml, createChannel.sh and edit that file as requirements
+* Run generate.sh and it will result crypto-config folder with organizations folders.
+```
+chmod +x generate.sh
+./generate.sh
+```
+
+* Edit base.yaml, docker-compose.yaml, create_join_Channel.sh.sh the files as your requirements
 
 * Now run the network and Docker should be on
 ```
@@ -57,17 +59,13 @@ docker-compose up -d
 ```
 docker-compose down
 ```
+* Frome here onwards network should up 
 
-* create a channel-artifacts folder
-```
-mkdir channel-artifacts
-```
-
-* Run createChannel.sh and it will result a channel file in channel-artifacts <br>
+* Run create_join_Channel.sh and it will result a channel file in channel-artifacts <br>
 It will createChannel, joinChannel and updateAnchorPeers
 ```
-chmod +x createChannel.sh
-./createChannel.sh
+chmod +x create_join_Channel.sh
+./create_join_Channel.sh
 ```
 
 * Check organisation is in the channel
